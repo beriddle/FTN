@@ -1,0 +1,12 @@
+Usage: @FILERUN [<Switches>]
+Switches:
+ -P<Period>     - time interval definition
+ -S<T-Mail.Log> - alternative log file definition
+ -L<T-Mail.Lng> - alternative *.LNG file definition
+ -C<T-LAN.CTL>  - alternative control file definition
+ -G[W][R]       - 72/48 column width busy graphic format
+ -Z[T][S]       - make 'T'otal/'S'ummary sessions seems like protected
+ -Ntask[,task]  - generating statistics only for listed here tasks
+ -M             - switch to 'Multiline' mode
+ -Q             - disable poster section
+ -H, -?         - this help file

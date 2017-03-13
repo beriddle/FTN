@@ -1,0 +1,514 @@
+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+±±                                                                  ±±
+±±   ßßßßßßßß\       ßß\       ßßßßß\  ßßß\  ßß\       T-Mail       ±±
+±±      ßß\          ßß\      ßß\  ßß\ ßßßß  ßß\    Log Analyser    ±±
+±±      ßß\   ßßßßß\ ßß\      ßßßßßßß\ ßß ßß ßß\     (C) 1996-9     ±±
+±±      ßß\          ßß\      ßß\  ßß\ ßß  ßßßß\    Vitaly Lunyov   ±±
+±±      ßß\          ßßßßßßß\ ßß\  ßß\ ßß\  ßßß\      2:5025/18     ±±
+±±                                                                  ±±
+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+                                           C O N T E N T S
+
+                               1. Description.......................21
+                               2. Configuration.....................29
+                               3. Startup parameters...............369
+                               4. Installation and everyday work...391
+                               5. About the author.................421
+                               6. Registration.....................433
+                               7. Disclaimer.......................441
+                               8. Credits..........................450
+                               ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+  1. Description.
+
+     T-LAN  log analyser is intended for gathering statistics of a FTN
+  system,  that  is using T-Mail or G.P.Mail mailer, creating a system
+  load histogram (for one/multiple lines) for a certain period of time
+  and  certain  address(es)  and  also  for sending results to echo or
+  netmail
+
+  2. Configuration.
+
+  Most of configuration  parameters are  located  in the configuration
+  file:
+(T-Lan.Ctl)
+;*********************************************************************
+;***         T-Mail log analyser 0.34 sample control file          ***
+;*********************************************************************
+;
+;RegisterName    The SysOp
+; Register string (value by default - Unregistered).
+; Defines  a  string which will be shown after 'Registered to:' words
+; during  program execution and will be inserted into '^aPID:' kludge
+; while posting. It MUST be the first keyword in T-LAN.CTL.
+;
+;======================= Log analyser section ========================
+;
+Address         2:0/0
+; Defines the main address of system, wich must be exactly the same as
+; main address from T-Mail.Ctl (value by default - 0:0/0.0).
+; In  T-Mail versions after 2603 the format of displaying addresses in
+; log  has  changed  and  now  it  became  possible to define aliases,
+; therefore  this  variable is necessary: it is used for processing of
+; abbreviated record of addresses in log and in list of aliases.
+;
+;Aliases         C:\T-MAIL\Aliases.Ctl ; 4D
+; File  of  T-Mail address aliases (value by default - no).
+; Is  intended  for  correct  work with T-Mail 2603+ where aliases are
+; used.  This  variable also replaces real address in reports by their
+; aliases.  It  may  be cancelled by indicating parameter 4d after the
+; name of aliases file. Up to 512 aliases are supported now.
+;
+Language        C:\T-MAIL\T-MAIL.LNG
+; Defines  the  filename of language support file T-Mail-LNG (value by
+; default - English for T-Mail version 2604).
+; If  you  use  another  language  and T-Mail version after 2599 it is
+; necessary to give here the path to your language file.
+; ATTENTION:  It  is  possible to define only one language version for
+; all analysed logs.
+;
+Log             C:\T-MAIL\T-MAIL.LOG ; Kill ; Cut 1000 500
+; Defines the name of analysed log. (value by default - no).
+; For  multiline  systems  or  for gathering statistics in one log but
+; with different values of other variables this is possible:
+;[1] Log C:\T-MAIL\T-MAIL1.LOG
+;[2] Log C:\T-MAIL\T-MAIL2.LOG
+; Available values:
+; Cut             - if log size overdue the first defined number of Kb
+;                   it will be cut to second defined number of Kb;
+;                 - if the first number is negative it means the number
+;                   of days to save a log for;
+; RenLog          - rename logfile name to a current date in "DD-MM-YY.Lnn"
+;                   format after processing, where nn is line number;
+; RenExt          - rename logfile extention  to a current day if year;
+; Backup          - move processed logs to BackupDir directory;
+; Kill            - erase log after processing.
+;
+;BackupDir       C:\T-MAIL\BACKUP
+; Defines  directory  name to place processed logs (value by default -
+; no).
+;
+Templates       TEMPLATE\
+; Defines  directory  with  templates for reports  (value by default -
+; executable directory).
+;
+;T-Hist          C:\T-MAIL\T-HIST.$00
+; Defines  T-Hist.$??  filename  for  appropriate  log file  (value by
+; default - no).
+; Correcting  T-Mail  history  file  after  log  cutting  for T-Mail's
+; built-in session viewer <Alt-I> to work properly.
+;
+;CutLog          Squish.Log   1000 500
+; Defines filename to be truncated after complete mailer logs analysis
+; (value by default - no). Maximum 'CutLog' keywords count is 256.
+; Available values:
+; 1. If log size overdue the first defined number of Kb it will be cut
+; to second defined number of Kb.
+; 2. If  the  first  number is negative it means the number of days to
+; save  a log for. It will work fine only with T-Mail style or Binkley
+; style logs.
+;
+;Output          C:\T-MAIL
+; Directory to hold temporary and report files.  By default it will be
+; an appropriate mailer log directory.
+;
+;Nodes           2:*/*.* 16:*/*.* !123:*/*.*
+; Defining the group of addresses (value by default - *:*/*.*).
+; Group  of  addresses,  for  creating  statistics. Supports agreement
+; about T-Mail addresses. Addresses, that do not enter this group, not
+; will be mentioned in statistics.
+;
+;Period          01/01-31/12,00:00:00-23:59:59
+; Defines  the  date and time of beginning and completion of gathering
+; statistics (value by default - 01/01-31/12,00:00:00-23:59:59).
+; The variable consists of two fields (of date and of time), separated
+; by  comma  and  represent  two intervals divided by '-' symbol, made
+; according to the following rules:
+; 1. The time of interval is by default 00:00:00-23:59:59
+; 2. If  the  first field contains symbols '/' it should be understood
+; as the date of beginning and end of the analysed interval.
+; 3. If  the  first  field  doesn't  contain  symbols '/' it should be
+; understood   as  "...days  before  this  (according  to  the  system
+; calendar)",  and  the  next after '-' - as "duration" (in days) i.e.
+; 'Period 1-1' wich means necessarity of gathering statistics for past
+; 24 hours.
+;
+Total           HideDetails,FileCPS
+; Common statistics (value by default - no).
+; The main part of statistics generator. Available values:
+;   HideDetails   - hide information about unsuccesfull calls;
+;   HideExternals - hide information about started process;
+;   HideFailures  - hide information about failures of EMSI;
+;   FileCPS       - count  CPS only on the basis of transmitting,
+;                   by default counts from the moment of
+;                   picking up the phone receiver;
+;   Protected     - think about all sessions as protected.
+;
+Summary         HideFailures,FileCPS
+; Summary statistics (value by default - no).
+; Available values:
+;   HideExternals - hide information about started process;
+;   HideFailures  - hide information about failures of EMSI;
+;   FileCPS       - count  CPS only on the basis of transmitting,
+;                   by default counts from the moment of
+;                   picking up the phone receiver;
+;   Protected     - think about all sessions as protected.
+;
+;Graphic         Wide
+; Building loading diagram (value by default - no).
+; Available values:
+;   Wide          - extended busy diagram (72 rows),
+;                   by default - 48;
+;   Fake          - to construct a loading diagram from "Nodes" value
+;                   (by default - display all information in it);
+;   Skip          - do not add information abount appropriate line to
+;                   a diagram (Multiline mode only);
+;   Space         - use space on empty place instead of 'ú'.
+;
+;Charset         ±²Û°@ðþþ
+; Characters,  with  the  help  of  wich  the  loading diagram will be
+; constructed  (value  by  default  is  brought  from  T-LAN.LNG), 7th
+; character  using  for building CPS diagram (value by default - 'þ'),
+; 8th  character  using  for  building  disk  usage  diagram (value by
+; default - 'þ').
+;
+FileList        *.* SizePKT,SizeARC,SizeTIC
+; List of files (value by default - *.*).
+; Wildcard:
+;   [!]Wildcard   - for files that do not correspond defined wildcard,
+;                   only size will be counted.
+; Available values:
+;   SizePKT       - calculate the size of transmitted Netmail;
+;   SizeARC       - calculate the size of transmitted Arcmail;
+;   SizeTIC       - calculate the size of transmitted *.tic files.
+;   SizeFiles     - calculate the size of transmitted *.tic files, not
+;                   matched with wildcard;
+;   HidePKT       - hide transmitted Netmail;
+;   HideARC       - hide transmitted Arcmail;
+;   HideTIC       - hide transmitted *.tic files;
+;   HideFiles     - hide transmitted files, not matched with wildcard;
+;   HideSkipped   - hide skipped files.
+;
+;CPS             Max,Avg,Min,Addr,Reverse
+; CPS report (value by default - Avg).
+; Available values:
+;   Max           - sort by maximum CPS;
+;   Avg           - sort by average CPS;
+;   Min           - sort by minimum CPS;
+;   Addr          - sort by system address;
+;   Reverse       - reverse sorting order;
+;   Top           - make 'Top 10 CPS' instead of diagram.
+;
+;Disk            CDEF ; Used
+; Disk space diargam (value by default - no).
+; Available values:
+;   C,D,..,Z or * - drive letters (* mean C-Z);
+;   Used          - make used space diagram (by default);
+;   Free          - make free space diagram.
+;
+TwitInfo         ,-1 /NC+5 /HUB+5 /B-Team+5 /C10+5 /C20+5 /C50+5 /C255+5 /Unregistered /Noncommercial+5 /Noncommercial
+; Delete substrings from 'Info' lines (value by default - no).
+; Control characters are '*', '+', '-', '^' and '=':
+; /C10 - delete substring '/C10';
+; /C10* - delete all characters after '/C10' substring;
+; /C10+10 - delete all characters after 10th character after '/C10'
+; /C10-10 - delete all characters after 10th character before  end  of
+; '/C10';
+; /C10^5  - delete 5 characters after '/C10' substring;
+; /Noncommercial=/NC - change substring '/Noncommercial' to '/NC'.
+; For example:
+; TwitInfo /C10+5
+; Original line: 'T-Mail 2604.OS2/C10/1234/12345678/1234'
+; After TwitInfo: 'T-Mail 2604.OS2/C10/1234'
+;
+Statistics      Total,Summary,Graphic,FileList,CPS,Disk,SysOp,Mailer ; ,Multiline
+; The list of reports (value by default - Total).
+; List of files, that will be generated. Reports  are  created  in the
+; output directory with corresponding log file name, if not specified:
+;           Multiline - create one report for all mentioned logs. In
+;                       this case reports will be named 'Station'
+; with extension for:
+;           Total     - .stt (always created)
+;           Summary   - .sta
+;           Graphic   - .stg
+;           Filelist  - .stf
+;           CPS       - .stc
+;           Disk      - .std
+;           SysOp     - .sts
+;           Mailer    - .stm
+;
+;Kill            Total,Summary,Graphic,Filelist,CPS,Disk,SysOp,Mailer
+; To erase reports after finishing work (value by default - no).
+; Available values:
+;   Total         - erase *.stt
+;   Summary       - erase *.sta
+;   Graphic       - erase *.stg
+;   Filelist      - erase *.stf
+;   CPS           - erase *.stc
+;   Disk          - erase *.std
+;   SysOp         - erase *.sts
+;   Mailer        - erase *.stm
+;
+SelfLog         T-LAN.LOG Normal
+; Defines the name of T-Lan log (value by default - no).
+; After  the file name goes the parameter with a level of detailing of
+; the log:
+; Debug  - is  a  debug  log.  It  is recommended to turn on only when
+; writing a bug report, because in this case every "sneeze" is written
+; there :)
+; Normal - normal detailing;
+; Tiny   - minimal information;
+; None   - prohibition of logging.
+;
+;============================= Poster section ========================
+;
+; Creating *.PKT type 2+
+;Area            Netmail Pvt,K/s,Trs
+; Areatag and flags (value by default - no, i.e. Poster is turned off)
+;
+;AreaPath        C:\T-MAIL\FILES
+; Echotosser inbound directory (value by default - current).
+;
+;FromPKT         2:5020/999
+; Address from wich a packet is created (value by default - no).
+;
+;FromMsgId       2:5020/999
+; MSGID of created message (value by default - FromPKT).
+;
+;ToPKT           2:5020/999 [password]
+; Address for wich a packet must be created (value by default - no).
+; For  systems  with  Full Security there is a possibility to define a
+; password to this packet after the address.
+;---------------------------------------------------------------------
+;
+;From           T-LAN
+; Defines  the  field  'From'  of  created message (value by default -
+; T-LAN).
+;
+;To             SysOp
+; Defines  the  field  'To'  of  created  message  (value by default -
+; 'SysOp' /in Netmail/ or 'All' /in Echomail/).
+;
+;Subj           Statistics (@Date)
+; Defines  the  field  'Subj'  of  current  message  (value by default
+; depends on T-LAN.LNG).
+;
+;Tearline       @PID
+; Defines tearline (value by default - no).
+;
+;Origin         -=( Automatically posted message )=-
+; Defines origin in echomail (value by default depends on T-LAN.LNG).
+;
+;PostFiles     12     Graphic+Summary
+; Defines  the  size  of  each message (in Kb) and the list of reports
+; wich  must be in this packet. If the size of report exeeds the given
+; value (by default - 12) then it will be cut a part.
+; Message size might be up to 32K (DOS) and up to 255K (OS/2).
+; The  list  shouldn't  be  larger  then in 'Statistics' because it is
+; difficult  to  send  the  report,  which  is  not  created (value by
+; default  - Graphic+Summary). Options separated by '+' character will
+; be  posted  to  a  sigle  message,  separated  by  ',' - to separate
+; messages.
+;
+;Flag          C:\T-MAIL\FLAGS\Arcmail.t-m Repack.t-m
+; Defines flags made after creating packet (value by default - no).
+; Name separator is a space character.
+; Next flags path may not be defined. In this case it will be the same
+; of the first flag's.
+;
+;===================== Download counter section ======================
+;
+;DirList       C:\T-MAIL\DIR.FRQ ; NoBackup
+; Directory list in T-Mail or G.P.Mail format for searching tranferred
+; files (value by default - no).
+; Available values:
+; NoBackup - erase FILES.BAK after successful FILES.BBS update.
+;
+;ZeroCounter   [00]
+; Default download counter (value by default - [00]).
+;
+IgnoreFiles   *.pk? *.su? *.mo? *.tu? *.we? *.th? *.fr? *.sa? *.tic *.?ut *.req *.xma *.?rq
+; Matching files should not be added to list needed to be counted.
+;
+;=====================================================================
+(EOF)
+
+     In  a  Poster  section  variables  of  T-LAN.CTL  macros usage is
+  available.
+
+  @PID     - string like 'T-LAN/2 0.28.a3'
+  @LongPID - string like 'T-LAN 0.28/Alpha-3/OS2'
+  @Date    - is available only after log analisys.  Result  is a time
+             period string like '02/03 23:00:12 - 03/03 22:11:19'
+  @OS      - OS version
+  @Uptime  - system uptime (OS/2 version only)
+
+     In  multiline systems it is possible to define numbers of "tasks"
+  before  the  variable  name  in square brackets. Their values may be
+  between 0 and 253.
+     The  priority of variable review is from the beginning to the end
+  of file. The order of assignment in T-Lan.Ctl doesn't matter.
+
+  Example 1:                         Example 2:
+  (t-lan.ctl)                        (t-lan.ctl)
+  [4] Nodes 2:5020/*.*               Nodes 2:*/*.*
+  Nodes 2:*/*.*                      [4] Nodes 2:5020/*.*
+  ---------------------------------  ---------------------------------
+  Here  the  entrance  of addresses  Here  all  lines are analysed: if
+  2:5020/*.* in log of the 4th line  they  belong  to the second zone,
+  is  analysed,  and also - if logs  as  the  common  variable 'Nodes'
+  of  other  lines  - belong to the  given  earlier  overlapps the 4th
+  second zone.                       line variable.
+
+     ATTENTION:  In  multiline  mode it is necessary to set the option
+  Fake  in  Graphic  variable in order that extra addresses should not
+  appear in statistics.
+
+     Besides, T-LAN works correctly only with that versions wich write
+  in log approximately like this:
+
+  02/06 10:29:18 Calling  2:5025/2.0, [1] 52-2448, BUSY: 18 sec
+  or like this:
+  02/06 10:29:18 Calling  5025/2.0, [1] 52-2448
+  02/06 10:29:36 Modem reports: <BUSY>
+
+  3. Startup parameters:
+
+     Some command line parameters can be also specified:
+
+  -P<Period>        - time interval definition
+  -S<T-Mail.Log>    - alternative log file definition
+  -L<T-Mail.Lng>    - alternative *.LNG file definition
+  -C<T-LAN.CTL>     - alternative control file definition
+  -G[W][R]          - 72/48 column width busy graphic format
+  -Z[T][S]          - make 'T'otal/'S'ummary sessions seems like protected
+  -Ntask[,task]     - generating statistics only for listed here tasks
+  -M                - switch to 'Multiline' mode
+  -Q                - disable poster section
+  -H, -?            - this help file
+
+  Example: T-Lan-2.Exe -cT-Lan238.Ctl -n1,2
+  starts T-LAN with  configuration  file T-Lan238.Ctl, which processes
+  only the first and the second "tasks".
+
+  NOTICE: key  -N  with single listed "task" cancels multiline mode if
+  it was given in T-Lan.Ctl.
+
+  4. Installation and everyday work.
+
+     T-LAN is distributed via T-MAIL fileecho conference. Last version
+  also may be found on the Internet site http://riddle.spb.ru
+
+     The distribution archive is an archive, named T-LANnnn.RAR, where
+  nnn - is a version number; it contains the following files:
+
+     FILE_ID.DIZ  - Information about archive contents
+     T-LAN.EXE    - DOS executable
+     T-LAN-2.EXE  - OS/2 text-mode executable
+     T-LAN.HIS    - History
+    *T-LAN.CTL    - Configuration file
+    *T-LAN.DOC    - Documentation
+    *T-LAN.HLP    - T-LAN help file
+    *T-LAN.LNG    - T-LAN language support file
+
+     Files, marked by '*' symbols are contained in distribution kit in
+  3 copies and in directories wich correspond to their language:
+  Russian\, English\, German\.
+     Note: German T-Lan*.Ctl & T-Lan.DOC are not supported any more.
+
+     At  the  first  installation  it  is  necessary  to place archive
+  content into some directory and copy there files, wich correspond to
+  the  language you choose, from one of subdirectories. Since then you
+  may adjust T-Lan.Ctl to your needs.
+     If  you  update  T-LAN to a new version you should move all files
+  except   T-Lan.Ctl  and  read  attentively  about  changes  in  file
+  T-Lan.His.
+
+  5. About the author.
+
+     Every  program contains errors and sometimes large number of them.
+  That's why  if you  have  found a bug  or  you  are  not  completely
+  satisfied by T-LAN,  I hope  you  wouldn't mind to inform the author.
+  Please,  mention  T-Mail  and T-LAN versions  in  bug  report, adding
+  their logs if possible.
+  Send it to one of these addresses:
+
+  Fidonet: Vitaly Lunyov, 2:5025/18@fidonet, 2:5030/818@fidonet
+  E-Mail:  t-lan@riddle.spb.ru
+
+  6. Registration.
+
+     T-LAN is distributed under  the  non-commercial freeeware concept
+  through the the terms of the GSS project. This means, that for using
+  T-LAN in your business you must contact the author.
+  Registration  provides technical support and notification of the new
+  versions.
+
+  7. Disclaimer.
+
+     T-LAN  is  distributed  "as is", this means, that author does not
+  care any responsibility for any destructve  actions caused by use of
+  this  program  product!  You  have  a  right  to distribute only the
+  author's archive,  without making any changes and without making any
+  profit  with  it.  If you do not agree with these conditions, please
+  erase this archive and all its copies that you have.
+
+  8. Credits.
+
+  Andy Elkin, 2:5030/15
+     - for T-Mail
+  Pavel Kojevatov, 2:5020/429
+     - for GraphLog
+  Igor Vanin, 2:5030/448
+     - for G.P.Mail and various comments and ideas
+  Dima Maloff, 2:5047/13
+     - for binkd
+  Jury Fradkin, 2:5030/339
+     - for the library to work with *.LNG,  the idea to support *.LNG
+       files, valuable advices, alpha-testing
+  Dmitri Karapats, 2:5030/668
+     - for the first English documentation
+  Yurij Babushkin, 2:5025/43
+     - for the second English documentation (by his pretty girlfriend)
+  Andrew Dolgov, 2:5030/633.41
+     - partially translation and correction of English documentation
+  Mike Parnanen, 2:220/85
+     - various useful ideas and suggestions
+  Gerald Schmidhuber, 2:2494/720
+     - for  the  idea  and  logs  with  external  freqs,   for  German
+       documentation and T-LAN.LNG
+  Dmitriy Bredikhin, 2:5020/301
+     - for deciding one night to change the modem :)
+  Eugene Turkulevich, 2:463/321
+     - for kiks and ideas about diagram
+  Yura Vdovytchenko, 2:50/334
+     - for the idea of fixing the oldest bug in processing *.LNG
+  Ivan Grigoriev, 2:5020/333
+     - for preference GraphLog
+  Alexandr Pavlov, 2:5025/18.4 (09-Jan-75 / 02-Feb-98)
+     - for catching bugs at the stage of primary alpha-testing
+  Alex Dmitriev, 2:5020/913
+     - for detailed bug reports and lots of valuable ideas
+  Dmitry Sergeev, 2:5020/851
+     - for ideas, that do not come into my head
+  Sergey Ivanov, 2:5010/30.35
+     - for cavil beta-testing
+  Damir Tenisheff, 2:5030/82.73
+     - for strict control the rights of time intervals
+  Oleg Kravets, 2:5025/37
+     - for detailed bug-reports
+  Alex Romanov, 2:5030/759
+     - for being unsatisfacted with poster <g> and alpha-testing
+  Oleg Rubanov, 2:5067/1
+     - for attentivity and useful ideas
+  Oleg Krivoshatkin, 2:5067/3
+     - for care testing
+  Boris Zamansky, 2:5020/1253
+     - for interesting ideas
+  Nick Lomtev, 2:5020/1053
+     - for the link with modem 14400
+  Denis Jdanov, 2:5030/589.13
+     - for expirements with T-LAN.CTL
+  Alex Solovyov, 2:5020/794.666
+     - for the first (after mine :) T-LAN crack
+  All, *:*/*.*
+     - for ideas, advices and remarks

@@ -1,0 +1,391 @@
+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±± Legend ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[+] New feature
+[-] Feature obsoleted
+[!] Bug fixed
+[*] Available for registered users only
+[%] Changed
+[?] Temporary bugs/changes
+[i] Info
+
+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±± History ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+±±± 0.07/Beta 17-Jun-96 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[i] First public beta
+[+] Total statistics: *.STT
+[+] Summary statistics: *.STA
+[+] Busy graphic: *.STG
+
+±±± 0.13/Beta 03-Jul-96 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[+] Switch '-L<Pathname>' - T-MAIL.LNG of T-Mail 2599+
+
+±±± 0.14/Beta 05-Jul-96 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[+] *.PKT support
+[+] Register keys
+
+±±± 0.17/Beta 06-Aug-96 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] Major bug fixed in *.LNG file support
+[+] Uploaded/downloaded files list: *.STF
+[+] Switch '-H[A][N][T][F][-]' - hide files with 'A'rcmail, 'N'etmail,
+    'T'ic,  'F'iles  and  count  only  its  summary  size.  ATTENTION:
+    filenames  accumulating  in  binary statistics (*.ST-) You can use
+    '-H'  switch  to  disable  this  feature. By default using '-HANT'
+    switch. '-H-' switch enables to list all transfered files w/o type
+    restriction
+
+±±± 0.18/Beta-1 04-Oct-96 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] '-Z' switch bug
+[+] T-LAN.LNG
+[+] T-LAN.HLP
+[+] Min/Max Cps in summary
+[+] External freqs support
+[%] Total and Summary sizes format
+[%] Default log language is 2599i-based now
+[-] '-R' switch
+[%] '-P' syntax expanded to absoleted '-R' switch parameters
+
+±±± 0.19/Beta-1 13-Oct-97 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] Midnight processing
+[!] New year processing
+[!] Full pathname processing
+[%] Non-standard (ZyXEL like) modem answers support
+[%] *.?ut, *.xma files processes as netmail now
+[%] Hydra detection corrected
+[%] External freq processor detection corrected
+[+] Multiline feature
+[+] Aliases.Ctl support with 2603+
+[?] Runtime error 216 at 0001FC87 after normal shutdown OS/2 version
+[?] While 'Statistics' keyword commented out screen output distort
+[-] All command line switches, excluding '-P'
+[+] T-LAN.CTL
+[+] New command line switches:
+    -S<T-Mail.Log>- external logfile definition
+    -L<T-Mail.Lng>- external *.LNG file definition
+    -G[W][R]      - 'W'ide/'R'educed busy graphic format
+[*] -N<task>      - generating statistics only for single task
+    -Q            - packing to *.PKT existing statistics files
+    -H, -?        - brief help
+
+±±± 0.19/Beta-2 21-Oct-97 (bugfix) ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] Slash in areatags
+[!] Incomplete type 2+ packets
+[!] Runtime error 216 after shutdown OS/2 version (thanks Jef)
+[!] Warnings on .ctl errors
+[!] 'Summary' keyword options
+[!] 'Statistics' & 'Postfiles' keywords action
+[!] Prevent 'strange' addresses in reports
+[!] Multiline mode fixes
+[!] Longtime waiting with no files to report
+[!] Summary sizes with 2G+ traffic
+[!] Periods like 1,23:00-9:00
+[%] Attempting to create missing logfiles instead of fatal exit
+[%] Main aka detection corrected with 'Share' calls
+[+] 'Space' option in 'Graphic' keyword (see T-LAN.CTL)
+[-] -Q switch
+
+±±± 0.19/Beta-3 29-Oct-97 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] Processing zero-length logs in OS/2 version
+[!] Address group handling
+[!] Tasks data override
+[!] Message attributes
+[!] Address mixing with non-standard calling lines
+[!] External runs inside session
+[+] 'Kill' option (see T-LAN.CTL)
+[+] Optional packet password in 'ToPKT' keyword (see T-LAN.CTL)
+[+] -C<T-Lan.Ctl> - alternative control file definition
+
+±±± 0.19/Beta-4 02-Jan-98 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] MSGID generation in DOS version
+[!] Aliases addresses detection
+[!] Msg date with greater than 1999 year
+[!] New year processing again
+[%] -N switches off 'Multiline' mode
+[%] Free logfiles is not including to 'Multiline' graphic
+[+] Missing logfiles warning
+[+] -M - Switch to 'Multiline' mode
+[+] -Q - Disable poster section
+
+±±± 0.19/Beta-5 28-Feb-98 ±±±±±±± In memory of Alexandr Pavlov ±±±±±±±
+[!] -C parsing error
+[!] MSGID/SEEN-BY addresses
+[!] MSGID algorithm
+[!] Packet part size longer 32k
+[!] Tasks parsing
+[!] 'Nodes' in multiline mode
+[!] File transfer direction in filelist report
+[%] Maximum address print length is 16 chrs now
+[%] Maximum aliases count changed to 512
+[%] Default log language is 2604-based English now
+[%] 'Postfiles' defaults after registering
+[+] 'Output' keyword (see T-LAN.CTL)
+[+] 'Charset' keyword (see T-LAN.CTL)
+[+] 'Tearline' keyword (see T-LAN.CTL)
+
+±±± 0.19/Beta-6 15-Mar-98 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] Full pathname processing again
+[!] Incorrect calls
+[%] Non-standard (ZyXEL like) modem answers support corrected
+[%] T-LAN.LNG
+[+] CPS statistics: *.STC
+[+] 'CPS' keyword (see T-LAN.CTL)
+[+] 'CPS' option with 'Statistics' and 'Postfiles' keywords: including
+    CPS statistics to appropriate report (see T-LAN.CTL)
+[+] '4D' option with 'Aliases' keyword (see T-LAN.CTL)
+
+±±± 0.20 15-Apr-98 (release) ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] 'CPS' keyword parsing
+[!] 'Output' to root directory
+[!] 'FromMsgId' default was empty instead of 'FromPKT' address
+[!] Aliases addresses detection
+[!] Save zero events
+[!] Compiling T-LAN.CTL
+[%] T-LAN.LNG
+[+] 'Restoring from crash' support
+[+] '@PID', '@LongPID' and '@Date' macroses is available in T-LAN.CTL
+
+±±± 0.21 26-Apr-98 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] INTL kludge with 'Aliases' keyword w/o '4D'
+[+] 'Flag' keyword (see T-LAN.CTL)
+
+±±± 0.22 12-May-98 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] SEEN-BY kludge with 'Aliases' keyword w/o '4D'
+[!] Stations counter in 'Summary' report
+[!] Attempting to create flag w/o defined 'Flag' keyword
+[%] Multiply flags definition  in  'Flag'  keyword (separated by space
+    character) available
+[%] T-LAN.LNG structure
+[%] 'Postfiles' options are sequence sensitive
+[%] 'Postfiles' default changed to 'Continuous,Graphic,Summary'
+
+±±± 0.23 23-May-98 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] Incoming calls with failures
+[%] T-LAN.LNG structure
+[%] Registering procedure and keys
+[+] 'RegisterName' keyword (see T-LAN.CTL)
+[+] T-LAN Decoder 1.0 included to package for decoding received keys
+[+] T-LAN023.CTL included to package: differences since 0.20 release
+
+±±± 0.24 06-Jun-98 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] Try to erase opened packet in some cases
+[!] Erasing reports only after its posting
+[!] External runs before address list
+[!] External runs loss
+[!] Stations counter in 'Summary' report
+[!] Runtime error 216 with zero length T-LAN.KEY in OS/2 version
+[%] T-LAN.LNG
+[%] *.STC format
+[+] Seventh character added to 'CharSet' string for 'CPS' graphic
+[+] 'Max',  'Avg',  'Min', 'Addr' and 'Reverse'  sort options of 'CPS'
+    keyword (see T-LAN.CTL)
+
+±±± 0.25 17-Jun-98 (release) ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[i] Birthday of T-LAN project: two years old
+[i] Welcome to T-LAN Official Home Page at http://riddle.spb.ru
+[!] Several fixes in 'CPS' graphic
+[!] Simple external runs
+[!] Broken *.PKT if nothing to post
+[%] Internal optimization
+[%] T-LAN.LNG
+[+] OS/2 only. 'Top' option of 'CPS' keyword: make 'Top 10' statistics
+    instead of 'Graphic' (see T-LAN.CTL)
+[+] -Z[T][S] command line switch:  make all sessions in 'T'otal and/or
+    'S'ummary reports seems like protected (paranoic mode :)
+[+] 'Protected'  option  of  'Total'  and 'Summary' keyword. Works the
+    same as -Z switch (see T-LAN.CTL)
+
+±±± 0.26 26-Jul-98 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[i] T-LAN is a shareware now (see REGISTER.XSU)
+[?] Ignoring comment character (';') w/o leading space
+[?] Disk space calculating under NT4 and space greater 1G
+[!] Overwrite existing *.PKT instead of append
+[!] Trying to erase nonexistent report
+[!] 'Protected' option of 'Total' keyword
+[!] *.STC in case of failures w/o sessions or greater than 99 nodes
+[-] AKAMatching support
+[-] German .CTL and .DOK files support
+[%] T-LAN.LNG
+[%] Internal optimization
+[%] 'Top' option of 'CPS' keyword works both in DOS and OS/2 versions
+[+] T-Mail 2605 TCP/IP connections support
+[+] External mailers support
+[+] Support of running BBS by exiting mode
+[+] Disk space usage statistics: *.STD
+[+] 'Disk' keyword (see T-LAN.CTL)
+[+] 'Disk' option with 'Statistics' and 'Postfiles' keywords: includes
+    disk usage statistics to appropriate report (see T-LAN.CTL)
+[+] Eighth character added to 'CharSet' string for 'Disk' report
+[+] SysOp info: *.STS
+[+] Mailers statistics: *.STM
+[+] 'Info' and 'TwitInfo' keywords (see T-LAN.CTL)
+[+] 'SysOp'  and  'Mailer'  options  with 'Statistics' and 'Postfiles'
+    keywords: includes sysop info and mailer statistics to appropriate
+    report (see T-LAN.CTL)
+
+±±± 0.26a 27-Jul-98 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] TwitInfo
+[!] Runtime error 200 while reporting in some cases
+[!] Runtime error 005 while posting in some cases
+
+±±± 0.27 08-Aug-98 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] *.STC with greater 256 lines
+[!] Processing 'TwitInfo' substrings with control characters
+[!] Drive sizes greater 2G under Win95/98
+[!] Packet garbage if zero character present in volume label
+[%] T-LAN.LNG
+[%] 'Summary' is not now necessary for 'SysOp', 'Mailer' and 'CPS'
+[%] *.STD format
+[*] 'TwitInfo' keyword is now available for registered users only
+[%] 'TwitInfo' syntax enhanced (see T-LAN.CTL)
+[-] 'Info' keyword
+[-] 'Kill' option of every keyword
+[+] 'Kill' keyword with options of every keyword (see T-LAN.CTL)
+[+] Macroses: @UpTime (OS/2 version only) and @OS
+[+] 'Used' and 'Free' options of 'Disk' keyword (see T-LAN.CTL)
+
+±±± 0.28 03-Sep-98 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] Nondefault 'CPS' parameters
+[!] Drive sizes under DOS 7.xx
+[%] Registering procedure and keys
+[%] 'RegisterName' is now available for unregistered users too
+[%] T-LAN.LNG
+[%] 'TwitInfo' default set to ',-1'
+[%] 'T-Log' keyword syntax enhanced for log cutter (see T-LAN.CTL)
+[*] 'T-Hist'  keyword defines T-Hist.$?? file name of 2603+ format for
+    log cutter (see T-LAN.CTL)
+[-] 'Continuous' option of 'PostFiles' keyword
+[+] 'SysOp' keyword (see T-LAN.CTL)
+[+] 'PostFiles'  options  separator '+' for continuous message posting
+    (see T-LAN.CTL)
+[+] T-LAN Decoder 2.0 included to package for decoding received keys
+
+±±± 0.29 23-Sep-98 (release candidate) ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] 'RegisterName' action
+[!] Fixed default output directory bug in multiline mode
+[!] Runtime errors 200 and 207 while reporting in some cases
+[%] 'T-Log' keyword syntax enhanced for daily cutting (see T-LAN.CTL)
+[%] String  'All' in list of 'Nodes' keyword parameters now represents
+    '*:*/*.*'  instead  of  warning message, for more compability with
+    T-Mail addresses agreement
+[%] Disk report sizes preview: was '131,072K', now '131,072M'
+[%] Memory requirements: 310K (DOS) and 432K (OS/2)
+[%] Maximum aliases count is 500
+[%] Mailer field width of 'SysOp' report
+[*] Now  you  can list task numbers with -N switch.  In case of single
+    task definition T-LAN switches off Multiline mode (if defined)
+[+] 'Skip' option of 'Graphic' keyword (see T-LAN.CTL)
+
+±±± 0.30 20-Oct-98 (release) ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] Main aka detection with 'Share' calls
+[!] Runtime error 200 with converted G.P.Mail logs and Filelist report
+[!] Disk space calculation for network drives
+[!] Drive sizes greater 2G of 'Disk' report in OS/2 version
+[%] Message part size limits for DOS and OS/2 versions
+[+] G.P.Mail logs support
+
+±±± 0.31 13-Nov-98 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[i] For registered users only
+[!] Bug with 'Handshake failure' detection
+[!] 'Handshake failure' detection after already detected node address
+[!] Old bug with exiting in the middle of the session.  Something with
+    BBS starting was fixed, too..
+[!] A bug, which could cause T-LAN to hang, when reading t-mail.lng
+[!] 'Failures' value in *.STG
+[!] Incorrect position calculation in log, when shortening by date
+[!] G.P.Mail: BBS detection added, 'External' support removed
+[%] T-LAN.LNG
+[%] Optimized working with T-LAN.LNG (-2K of code)
+[%] Cosmetic fixes (like starting with '-?' command line switch)
+[%] Information, written to T-LAN.LOG, when shortening logs
+[%] G.P.Mail: only needed modem responses are processed
+[%] G.P.Mail:  off  hook  without  connect is processed as  'Handshake
+    failure' (T-Mail can't log this)
+[+] Download counter
+[+] 'DirList', 'ZeroCounter' ¨ 'IgnoreFiles' keywords (see T-LAN.CTL)
+[+] 'CutLog' keyword (see T-LAN.CTL)
+[+] G.P.Mail: detection of FTS-1 sessions & Xmodem
+[+] Demo  key,  that  activates Poster and Download counter support is
+    available for FREQ (alias T-LANKEY) at 2:5030/818@fidonet
+
+±±± 0.32 17-Feb-99 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[i] For registered users only
+[i] binkd: sum of maxclients and maxservers must be equal or less 254.
+    If anybody wants more - please mail me :)
+[i] binkd: in some cases T-LAN can't process sessions, but writes info
+    about it before exit
+[!] Broken packets if reports for posting are not found
+[!] Broken packets if length of 'From', 'To' or 'Subj' field more then
+    maximum possible
+[!] 'CutLog' keyword parameters
+[!] Displaying warning if numeric parameter is equal to -1
+[!] Exiting with opened packet in case of no reports to post
+[!] In summary report min. & max. cps truncate to 4 characters
+[!] Incorrect needed available memory prognosis
+[!] MSGID algorithm
+[!] No files in 'Filelist' report with !<wildcard>
+[!] Processing logs with end of some event at the beginning
+[!] Several errors with 'handshake failure' handling
+[!] Stack overflow with large logs
+[!] Shortens logs with new year inside ;)
+[!] Word overflow in 'Summary' reports of DOS version
+[!] G.P.Mail: skip and refuse handle
+[!] G.P.Mail: parasite skip in Filelist report
+[!] G.P.Mail: detection of various ZModems
+[!] G.P.Mail: log analyser failed to work,  if external T-MAIL.LNG was
+    declared
+[%] WARNING: 'T-Log' directive changed to 'Log'
+[%] WARNING: 'Log' directive changed to 'SelfLog'
+[%] Algorithm of skipped files detection
+[%] Busy diagram is now beginning with first 'Period' value
+[%] CPS diagram is now independed from random CPS "splashes"
+[%] Sorting *.stm in alphabetical order in case of equal mailers count
+[%] Some interface changes
+[%] Three protocols added in 'Total' statistics header
+[%] Timer handling optimized
+[%] T-LAN.FAQ
+[%] G.P.Mail: some changes in logs handling
+[-] G.P.Mail: logs hadling removed from DOS version
+[+] binkd logs support
+[+] 'BackupDir' keyword (see T-LAN.CTL)
+[+] 'FileList'  keyword  parameters:  'HidePKT', 'HideARC', 'HideTic', 'HideFiles', 'HideSkipped' and 'SizeFiles' (see T-LAN.CTL)
+[+] 'Log'  keyword  parameters:  'RenExt',  'RenLog' and 'Backup' (see T-LAN.CTL)
+[+] Optional FSC-0046 PID compatibility (-DF command line parameter)
+[+] G.P.Mail: support for ExternMail
+
+±±± 0.33 01-Jun-99 (release) ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[i] Freeware non-commercial version
+[%] T-LAN.FAQ
+[-] Registration keys is now obsolete
+[+] Acorp modem answers support
+
+±±± 0.34/Beta-1 10-Aug-99 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[!] Aliases in kludges instead of real addresses
+[!] External mailer recognizing of incoming sessions
+[!] 'Skip' parameter action of 'Graphic' keyword
+[!] Negative '@Uptime' after about 25 days OS/2 running
+[%] Outgoing calls with external mailers now handle as External, not as
+    separate addresses
+[%] 'TwitInfo' syntax enhanced (see T-LAN.CTL)
+[+] Report templates and 'Templates' keyword (see T-LAN.CTL).  Archive
+    now contains appropriate templates.  WARNING: now  T-LAN  does not
+    work without templates!
+[+] G.P.Mail: external mailer recognizing
+
+±±± 0.34/Beta-2 ??-Mar-00 ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[i] Date and time routines generally rewrote. Due to these changes may
+    be correct several time related errors but may cause  a bit slowly
+    log analysis and some misfeatures :)
+[i] Before running this beta please erase files T-LAN.BIN & T-LAN.DLC
+    from executable directory
+[!] Log's year calculating
+[!] High speed modem speed detection
+[!] Month of type 2+ binary header was incorrect
+[!] Yet another attempt to fix dupes of MSGID generator
+[%] Handling periods like 22:00-8:00 in daily basis
+[%] Changes of 'Disk' report
+[%] A bit of 'cosmetical' fixes
+[+] Win32 version
+
+±±±±±±±±±±±±±±±±±±±±±±±±±± Known bugs list ±±±±±±±±±±±±±±±±±±±±±±±±±±±
+[?] Building Filelist with large log may cause T-LAN to hang 
+[?] Ignoring comment character (';') w/o leading space
+[?] Disk space calculating under NT4 and space greater 1G in DOS EXE
+[?] Disk space calculating under Win9x and space greater 2G in W32 EXE
+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±

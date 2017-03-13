@@ -1,0 +1,177 @@
+Code_Addr_1     Failure
+Code_Addr_2     External
+Code_Addr_3     BBS-User
+Code_Addr_4     Terminal
+
+Imp_File_1      Continue (Part
+Imp_File_2      Continued on next page
+
+Poster_1        Statistics
+Poster_2        -=( Automatically posted message )=-
+
+WaitOrKey_1     Press a key to continue...
+
+Macro_1         days
+
+Fill_Known_1    not enough memory
+Fill_Known_2    English (can't open file)
+
+Count_Stat_1    Analysing
+
+Total_1         Total statistics
+Total_2         Remote
+Total_3         Listed
+Total_4         Unlisted
+Total_5         Password
+Total_6         Present
+Total_7         Absent
+Total_8         Error
+Total_9         Call
+Total_10        Incoming
+Total_11        Outgoing
+Total_12        Protocol
+Total_13        Session
+Total_14        Success
+Total_15        Aborted
+Total_16        Session
+Total_17        Begin
+Total_18        End
+Total_19        Address
+Total_20        Time
+Total_21        Online
+Total_22        Bytes
+Total_23        received
+Total_24        Bytes
+Total_25        sent
+Total_26        CPS
+Total_27        Speed
+Total_28        Reporting
+Total_29        Ext.Freq
+Total_30        Present
+Total_31        Absent
+
+Overall_1       Summary link statistics
+Overall_2       Password
+Overall_3       Present
+Overall_4       Absent
+Overall_5       Error
+Overall_6       Outgoing calls
+Overall_7       Incoming calls
+Overall_8       Sessions
+Overall_9       Last Session Result
+Overall_10      Success
+Overall_11      Aborted
+Overall_12      Address
+Overall_13      Days/Time
+Overall_14      Online
+Overall_15      Bytes
+Overall_16      received
+Overall_17      Bytes
+Overall_18      sent
+Overall_19      CPS
+Overall_20      Stations
+Overall_21      Min.
+Overall_22      Max.
+Overall_23      Avg.
+
+Filelist_1      Transfered files list
+Filelist_2      Address
+Filelist_3      Session
+Filelist_4      Time
+Filelist_5      Name
+Filelist_6      Size
+Filelist_7      CPS
+Filelist_8      Filelist
+Filelist_9      skip
+Filelist_10     netmail
+Filelist_11     arcmail
+Filelist_12     tic
+Filelist_13     files
+
+GraphLog_1      Total time
+GraphLog_2      Busy time
+GraphLog_3      ± Calling
+GraphLog_4      ² Incoming
+GraphLog_5      Û Outgoing
+GraphLog_6      ° External
+GraphLog_7      @ BBS-User
+GraphLog_8      ð Failures
+GraphLog_9      Station busy graphic
+GraphLog_10     lines
+
+CPSLog_1        Top 10 CPS
+CPSLog_2        Address
+CPSLog_3        CPS
+CPSLog_4        Absolute maximum
+CPSLog_5        Absolute minimum
+CPSLog_6        Average maximum
+CPSLog_7        Average minimum
+
+CPSWide_1       CPS Graphic
+CPSWide_2       Address
+CPSWide_3       CPS
+CPSWide_4       Maximum
+CPSWide_5       Minimum
+CPSWide_6       Average
+
+Disk_1          Used Disk Space
+Disk_2          Volume label
+Disk_3          Scanning drives
+Disk_4          Space
+Disk_5          Free
+Disk_6          Free Disk Space
+
+Info_1          SysOp Info
+Info_2          Address
+Info_3          SysOp
+Info_4          Mailer
+Info_5          Mailers Usage
+Info_6          Count
+Info_7          Percent
+
+Help_1          Error
+Help_2          Can't open
+
+Start_1         Duplicate parameter:
+Start_2         Invalid first date/time format
+Start_3         Invalid second date/time format
+Start_4         Invalid first date/time format
+Start_5         Invalid second date/time format
+Start_6         Invalid parameter:
+Start_7         Invalid 'From' address
+Start_8         Invalid or missing 'To' address
+Start_9         Invalid character with switch -
+Start_10        Illegal task number with -N switch
+Start_11        Language:
+Start_12        Internal English
+Start_13        English
+Start_14        Russian
+Start_15        Unknown
+Start_16        Can't read aliases
+Start_17        German
+Start_18        Czech
+
+ResetLF_1       Open retry
+ResetLF_2       File access denied
+ResetLF_3       Can't open input file
+
+Main_1          English version
+Main_2          Can't access output directory
+Main_3          Registered to:
+Main_4          Can't find input file
+Main_5          Processing:
+Main_6          Not enough memory
+Main_7          Done
+Main_8          Time pass:
+Main_9          Multiline mode
+
+Log_1           Can't create log file
+Log_2           Log file is locked
+
+ReadCtl_1       Can't open
+ReadCtl_2       Reading
+ReadCtl_3       Invalid assignment
+ReadCtl_4       Unknown keyword
+ReadCtl_5       Can't create
+ReadCtl_6       Illegal task number
+ReadCtl_7       at line

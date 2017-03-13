@@ -1,0 +1,12 @@
+Benutzung: @FILERUN [<Schalter>]
+Schalter:
+ -P<Period>     - Definition des Zeitintervalls
+ -S<T-Mail.Log> - Angabe einer alternativen Logdatei
+ -L<T-Mail.Lng> - Definition einer alternativen *.LNG Datei
+ -C<T-LAN.CTL>  - Definition einer alternativen Steuerungsdatei
+ -G[W][R]       - 'W'eites/'R'eduziertes Format fuer die Auslastungsgrafik
+ -Z[T][S]       - make 'T'otal/'S'ummary sessions seems like protected
+ -Ntask[,task]  - erstellt Statistiken nur fuer einen einzelnen Task
+ -M             - schaltet auf den 'Multiline' Modus
+ -Q             - deaktiviert den Versandabschnitt
+ -H, -?         - Hilfe

@@ -1,0 +1,177 @@
+Code_Addr_1     Fehler
+Code_Addr_2     Extern
+Code_Addr_3     BBS-User
+Code_Addr_4     Terminal
+
+Imp_File_1      Fortsetzung (Teil
+Imp_File_2      Siehe nÑchste Seite
+
+Poster_1        Statistiken
+Poster_2        -=( Automatisch erstellte Nachricht )=-
+
+WaitOrKey_1     Bitte eine Taste drÅcken
+
+Macro_1         days
+
+Fill_Known_1    nicht genÅgend Speicher
+Fill_Known_2    kann Datei nicht îffnen
+
+Count_Stat_1    Analysiere
+
+Total_1         Gesamtstatistik
+Total_2         Remote
+Total_3         Gelistet
+Total_4         Ungelistet
+Total_5         Passwort
+Total_6         prÑsent
+Total_7         fehlt
+Total_8         Fehler
+Total_9         Anruf
+Total_10        Rein
+Total_11        Raus
+Total_12        Protokoll
+Total_13        Session
+Total_14        Erfolg
+Total_15        Abbruch
+Total_16        Session
+Total_17        Beginn
+Total_18        Ende
+Total_19        Adresse
+Total_20        Zeit
+Total_21        Online
+Total_22        Bytes
+Total_23        empfangen
+Total_24        Bytes
+Total_25        gesendet
+Total_26        CPS
+Total_27        Speed
+Total_28        Melde
+Total_29        Ext.Freq
+Total_30        prÑsent
+Total_31        fehlt
+
+Overall_1       Gesamtstatistik
+Overall_2       Passwort
+Overall_3       prÑsent
+Overall_4       fehlt
+Overall_5       Fehler
+Overall_6       Ausgehende Rufe
+Overall_7       Eingehende Anrufe
+Overall_8       Sessions
+Overall_9       Ergebnis der letzten Session
+Overall_10      Erfolg
+Overall_11      Abbruch
+Overall_12      Adresse
+Overall_13      Tage/Zeit
+Overall_14      Online
+Overall_15      Bytes
+Overall_16      empfangen
+Overall_17      Bytes
+Overall_18      gesendet
+Overall_19      CPS
+Overall_20      Stationen
+Overall_21      Min.
+Overall_22      Max.
+Overall_23      Avg.
+
+Filelist_1      Liste Åbertragener Dateien
+Filelist_2      Adresse
+Filelist_3      Session
+Filelist_4      Zeit
+Filelist_5      Name
+Filelist_6      Grî·e
+Filelist_7      CPS
+Filelist_8      Filelist
+Filelist_9      skip
+Filelist_10     Netmail
+Filelist_11     Arcmail
+Filelist_12     Tic
+Filelist_13     Dateien
+
+GraphLog_1      Gesamtzeit
+GraphLog_2      Besetztzeit
+GraphLog_3      ± Rufend
+GraphLog_4      ≤ Rein
+GraphLog_5      € Raus
+GraphLog_6      ∞ Extern
+GraphLog_7      @ BBS-User
+GraphLog_8       Fehler
+GraphLog_9      Auslastungsgrafik
+GraphLog_10     Lines
+
+CPSLog_1        Beste 10 CPS
+CPSLog_2        Adress
+CPSLog_3        CPS
+CPSLog_4        Absolutmaximum
+CPSLog_5        Absolutminimum
+CPSLog_6        Mittelmaximum
+CPSLog_7        Mittelminimum
+
+CPSWide_1       CPS Grafik
+CPSWide_2       Adress
+CPSWide_3       CPS
+CPSWide_4       Maximum
+CPSWide_5       Minimum
+CPSWide_6       Mittel
+
+Disk_1          Used Disk Space
+Disk_2          Volume label
+Disk_3          Scanning drives
+Disk_4          Space
+Disk_5          Free
+Disk_6          Free Disk Space
+
+Info_1          SysOp Info
+Info_2          Address
+Info_3          SysOp
+Info_4          Mailer
+Info_5          Mailers Usage
+Info_6          Count
+Info_7          Percent
+
+Help_1          Fehler
+Help_2          Kann nicht îffnen
+
+Start_1         Doppelte Parameter:
+Start_2         Falsches erstes Datum/Zeit Format
+Start_3         Falsches zweites Datum/Zeit Format
+Start_4         Falsches erstes Datum/Zeit Format
+Start_5         Falsches zweites Datum/Zeit Format
+Start_6         Falscher Parameter:
+Start_7         Falsche 'From' Adresse
+Start_8         Falsche oder fehlende 'To' Adresse
+Start_9         Falsches Zeichen beim switch -
+Start_10        Illegale Tasknummer mit -N Switch
+Start_11        Sprache:
+Start_12        Internes Englisch
+Start_13        Englisch
+Start_14        Russisch
+Start_15        Unbekannt
+Start_16        Kann Aliases nicht lesen
+Start_17        Deutsch
+Start_18        Tschechisch
+
+ResetLF_1       Versuche zu îffnen
+ResetLF_2       Dateizugriff verweigert
+ResetLF_3       Kann Eingabedatei nicht îffnen
+
+Main_1          Deutsche Version
+Main_2          Arbeits katalog ist nicht zugÑnglich
+Main_3          Registriert fÅr:
+Main_4          Kann Eingabedatei nicht finden
+Main_5          Verarbeite:
+Main_6          Nicht genÅgend Speicher
+Main_7          Fertig
+Main_8          Benîtigte Zeit:
+Main_9          Multiline Modus
+
+Log_1           Kann Logdatei nicht erstellen
+Log_2           Logdatei wird benutzt
+
+ReadCtl_1       Kann nicht îffnen
+ReadCtl_2       Lese
+ReadCtl_3       UnzulÑssige VerknÅpfung
+ReadCtl_4       Unbekanntes SchlÅsselwort
+ReadCtl_5       Kann nicht erstellen
+ReadCtl_6       Illegale Tasknummer
+ReadCtl_7       in Zeile
