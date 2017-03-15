@@ -1,7 +1,7 @@
 /*****************************************************************************
  * R-Track - Simple Netmail tracker
  *
- * $Id: ftn.h,v 0.10 2005/04/27 00:10:00 riddle Exp $
+ * $Id: ftn.h,v 0.12 2005/04/27 00:12:00 riddle Exp $
  *
  * Mailer processor header
  *
@@ -42,11 +42,14 @@
 #include <io.h>
 #endif
 #include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include <time.h>
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <dirent.h>
 
 #define ftnver    "280798"
 #define byte      unsigned char

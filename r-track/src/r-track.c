@@ -1,12 +1,12 @@
 /*****************************************************************************
  * R-Track - Simple Netmail tracker
  *
- * $Id: ftn.h,v 0.10 2005/04/27 00:10:00 riddle Exp $
+ * $Id: ftn.h,v 0.12 2007/02/20 00:12:00 riddle Exp $
  *
  * Mailer processor header
  *
  *****************************************************************************
- * Copyright (C) 2005
+ * Copyright (C) 2005,2007
  *
  * Riddle Software, Inc.                    Fidonet: 2:5025/18.1@fidonet
  * Vitaly Lunyov                             Internet: riddle@riddle.ru
@@ -29,12 +29,10 @@
  *****************************************************************************/
 
 #include "ftn.h"
-#include <dirent.h>
-#include <sys/stat.h>
 
 #define M   256
 #define PID "R-Track"
-#define VER "0.10"
+#define VER "0.12"
 
 #if defined(__OS2__)
 #define OS "2"
@@ -166,166 +164,174 @@ byte packmsg(ADR fpkt,ADR topkt,char *domain,
    ADR fadr,toadr;
    struct stat st;
    struct dirent *dir;
-   int sz=sizeof mh,rc=0,p=0;
+   int sz=sizeof mh,rc=0,p=0,bsy=busy(topkt,topkt.z,1);
    long sb;
    char klg[M*2],pkt[M],xa[M],s[M],t[M],tn[M],msg[M],*body,*q,*x;
 
    binkfile(topkt,topkt.z,t);
    sprintf(pkt,"%s%scut",pktdir,t);
-   if (debug) printf("binkfile='%s'\n",pkt);
-   pf=fopen(pkt,"r+b");
-   if (!pf) pf=fopen(pkt,"w+b");
-   if (pf)
+   if (debug) {
+      printf("binkfile='%s' bsy=%d\n",pkt,bsy);
+   }
+   if (!bsy)
    {
-      if ((md=opendir(msgdir)))
+      pf=fopen(pkt,"r+b");
+      if (!pf) pf=fopen(pkt,"w+b");
+      if (pf)
       {
-         while ((dir=readdir(md)))
+         if ((md=opendir(msgdir)))
          {
-            strcpy(t,dir->d_name);
-            if (debug) printf("Checking %s\n",t);
-            if (strstr(t,"msg")==NULL) continue;
-	    sprintf(msg,"%s%c%s",msgdir,slash,t);
-	    
-            if (debug) printf("Packing %s\n",msg);
-            mf=fopen(msg,"rb");
-            if (mf)
+            while ((dir=readdir(md)))
             {
-               fstat(fileno(mf),&st);
-               sb=st.st_size-sz;
-               body=malloc(sb);
-               fread(&mh,sz,1,mf);
-               fread(body,sb,1,mf);
-               fclose(mf);
-               remove(msg);
-               // --- parse kludges
-               fadr.z=0; fadr.net=0; fadr.node=0; fadr.pnt=0;
-               toadr.z=0; toadr.net=0; toadr.node=0; toadr.pnt=0;
-               q=body;
-               klg[0]=0;
-               while (*q=='\1')
-               {
-                  q++;
-                  if (q==strstr(q,"INTL"))
-                  {
-                     q+=5;
-                     x=strchr(q,' ');
-                     strncpy(t,q,x-q);
-                     t[x-q]=0;
-                     q=x+1;
-                     if (debug) printf("intl='%s' ",t);
-                     toadr=decodeaddr(t);
-                     x=strchr(q,'\r');
-                     strncpy(t,q,x-q);
-                     t[x-q]=0;
-                     q=x+1;
-                     if (debug) printf("'%s'\n",t);
-                     fadr=decodeaddr(t);
-                  }
-                  else if (q==strstr(q,"TOPT"))
-                  {
-                     q+=5;
-                     toadr.pnt=atoi(q);
-                     q=strchr(q,'\r');
-                     q++;
-                  }
-                  else if (q==strstr(q,"FMPT"))
-                  {
-                     q+=5;
-                     fadr.pnt=atoi(q);
-                     q=strchr(q,'\r');
-                     q++;
-                  }
-                  else
-                  {
-                     q--;
-                     x=strchr(q,'\r');
-                     strncat(klg,q,x-q+1);
-                     q=x+1;
-                  }
-               }
-               sb-=q-body;
-               // --- parse end ---
-               fseek(pf,0L,SEEK_END); // Seek to EOF
-               if (!ftell(pf)) // New packet
-               {
-                  makepkthdr(fpkt,topkt,&hdr);
-                  hdr.orignet=-1; // PKT type 2+
-                  fwrite(&hdr,sizeof hdr,1,pf);
-               }
-               else if (!p) fseek(pf,-2L,SEEK_END); // Double zero bypass
-               p++;
-               ph.pkttype=2;
-               ph.orignode=mh.orignode;
-               ph.orignet=mh.orignet;
-               ph.destnode=mh.destnode;
-               ph.destnet=mh.destnet;
-               if (dstover)
-               {
-                  sprintf(xa,"\1X-Real-To: %d:%d/%d.%d\r",
-                         toadr.z,toadr.net,toadr.node,toadr.pnt);
-                  toadr=topkt;
-                  ph.destnode=toadr.node;
-                  ph.destnet=toadr.net;
-               } else xa[0]=0;
-               ph.specific_data_lo=ph.specific_data_hi=0;
-               fwrite(&ph,sizeof ph,1,pf);
-               strcpy(t,mh.datetim); fwrite(&t,strlen(t)+1,1,pf);
-               strcpy(t,mh.to_); fwrite(&t,strlen(t)+1,1,pf);
-               strcpy(t,mh.from); fwrite(&t,strlen(t)+1,1,pf);
-               strcpy(t,mh.subj); fwrite(&t,strlen(t)+1,1,pf);
+               strcpy(t,dir->d_name);
+               if (debug) printf("Checking %s\n",t);
+               if (strstr(t,"msg")==NULL) continue;
+	       sprintf(msg,"%s%c%s",msgdir,slash,t);
 
-               sprintf(t,"\1INTL %d:%d/%d %d:%d/%d\r",
-                         toadr.z,toadr.net,toadr.node,
-                         fadr.z,fadr.net,fadr.node);
-               fwrite(&t,strlen(t),1,pf);
-               if (toadr.pnt)
+               if (debug) printf("Packing %s\n",msg);
+               mf=fopen(msg,"rb");
+               if (mf)
                {
-                  sprintf(t,"\1TOPT %d\r",toadr.pnt);
+                  fstat(fileno(mf),&st);
+                  sb=st.st_size-sz;
+                  body=malloc(sb);
+                  fread(&mh,sz,1,mf);
+                  fread(body,sb,1,mf);
+                  fclose(mf);
+                  unlink(msg);
+                  // --- parse kludges
+                  fadr.z=0; fadr.net=0; fadr.node=0; fadr.pnt=0;
+                  toadr.z=0; toadr.net=0; toadr.node=0; toadr.pnt=0;
+                  q=body;
+                  klg[0]=0;
+                  while (*q=='\1')
+                  {
+                     q++;
+                     if (q==strstr(q,"INTL"))
+                     {
+                        q+=5;
+                        x=strchr(q,' ');
+                        strncpy(t,q,x-q);
+                        t[x-q]=0;
+                        q=x+1;
+                        if (debug) printf("intl='%s' ",t);
+                        toadr=decodeaddr(t);
+                        x=strchr(q,'\r');
+                        strncpy(t,q,x-q);
+                        t[x-q]=0;
+                        q=x+1;
+                        if (debug) printf("'%s'\n",t);
+                        fadr=decodeaddr(t);
+                     }
+                     else if (q==strstr(q,"TOPT"))
+                     {
+                        q+=5;
+                        toadr.pnt=atoi(q);
+                        q=strchr(q,'\r');
+                        q++;
+                     }
+                     else if (q==strstr(q,"FMPT"))
+                     {
+                        q+=5;
+                        fadr.pnt=atoi(q);
+                        q=strchr(q,'\r');
+                        q++;
+                     }
+                     else
+                     {
+                        q--;
+                        x=strchr(q,'\r');
+                        strncat(klg,q,x-q+1);
+                        q=x+1;
+                     }
+                  }
+                  sb-=q-body;
+                  // --- parse end ---
+                  fseek(pf,0L,SEEK_END); // Seek to EOF
+                  if (!ftell(pf)) // New packet
+                  {
+                     makepkthdr(fpkt,topkt,&hdr);
+                     hdr.orignet=-1; // PKT type 2+
+                     fwrite(&hdr,sizeof hdr,1,pf);
+                  }
+                  else if (!p) fseek(pf,-2L,SEEK_END); // Double zero bypass
+                  p++;
+                  ph.pkttype=2;
+                  ph.orignode=mh.orignode;
+                  ph.orignet=mh.orignet;
+                  ph.destnode=mh.destnode;
+                  ph.destnet=mh.destnet;
+                  ph.specific_data_lo=mh.attr;
+                  ph.specific_data_hi=0;
+                  if (dstover)
+                  {
+                     sprintf(xa,"\1X-Real-To: %d:%d/%d.%d\r",
+                            toadr.z,toadr.net,toadr.node,toadr.pnt);
+                     toadr=topkt;
+                     ph.destnode=toadr.node;
+                     ph.destnet=toadr.net;
+                  } else xa[0]=0;
+                  ph.specific_data_lo=ph.specific_data_hi=0;
+                  fwrite(&ph,sizeof ph,1,pf);
+                  strcpy(t,mh.datetim); fwrite(&t,strlen(t)+1,1,pf);
+                  strcpy(t,mh.to_); fwrite(&t,strlen(t)+1,1,pf);
+                  strcpy(t,mh.from); fwrite(&t,strlen(t)+1,1,pf);
+                  strcpy(t,mh.subj); fwrite(&t,strlen(t)+1,1,pf);
+
+                  sprintf(t,"\1INTL %d:%d/%d %d:%d/%d\r",
+                            toadr.z,toadr.net,toadr.node,
+                            fadr.z,fadr.net,fadr.node);
                   fwrite(&t,strlen(t),1,pf);
+                  if (toadr.pnt)
+                  {
+                     sprintf(t,"\1TOPT %d\r",toadr.pnt);
+                     fwrite(&t,strlen(t),1,pf);
+                  }
+                  if (fadr.pnt)
+                  {
+                     sprintf(t,"\1FMPT %d\r",fadr.pnt);
+                     fwrite(&t,strlen(t),1,pf);
+                  }
+                  fwrite(&klg,strlen(klg),1,pf);
+                  if (strlen(xa)) fwrite(&xa,strlen(xa),1,pf);
+                  fwrite(q,sb,1,pf);
+                  if (q[sb-1]!='\r') fputc('\r',pf);
+                  codeaddr(fpkt,0,s);
+                  ftndate(time(NULL),tn);
+                  sprintf(t,"\1Via %s%s, %s %s %s\r",s,domain,tn,PID,VER);
+                  fwrite(&t,strlen(t)+1,1,pf);
+                  free(body);
                }
-               if (fadr.pnt)
-               {
-                  sprintf(t,"\1FMPT %d\r",fadr.pnt);
-                  fwrite(&t,strlen(t),1,pf);
-               }
-               fwrite(&klg,strlen(klg),1,pf);
-               if (strlen(xa)) fwrite(&xa,strlen(xa),1,pf);
-               fwrite(q,sb,1,pf);
-               if (q[sb-1]!='\r') fputc('\r',pf);
-               codeaddr(fpkt,0,s);
-               ftndate(time(NULL),tn);
-               sprintf(t,"\1Via %s%s, %s %s %s\r",s,domain,tn,PID,VER);
-               fwrite(&t,strlen(t)+1,1,pf);
-               free(body);
             }
+            closedir(md);
          }
-         closedir(md);
-      }
-      if (p)
-      {
-         fputc(0,pf);
-         fputc(0,pf);
-      }
-      fclose(pf);
-   } else rc=1;
-   if (debug) printf("Packed %d messages\n",p);
+         if (p)
+         {
+            fputc(0,pf);
+            fputc(0,pf);
+         }
+         fclose(pf);
+      } else rc=1;
+      bsy=busy(topkt,topkt.z,2);
+      if (debug) printf("Packed %d messages, bsy=%d\n",p,bsy);
+   }
    return rc;
 }
 
 int main(int ac,char *av[])
 {
-//   extern ulong _ftnrnd;
-   int i;
    strcpy(prg,strrchr(av[0],slash)+1);
    printf("%s/%s %s (C) Vitaly Lunyov (2:5025/18@fidonet)\n",PID,OS,VER);
    printf("Compiled on %s at %s\n",__DATE__,__TIME__);
    if (ac<3) help(1);
 //   av[ac-1][strlen(av[ac-1])-1]=0;
+/*
    if (debug)
    for (i=1;i<ac;i++)
    {
       printf("%d. \"%s\" (%02x)\n",i,av[i],av[i][strlen(av[i])-1]);
    }
+*/
    parse_cmdline(ac,av);
    if (debug)
    {
@@ -343,11 +349,11 @@ int main(int ac,char *av[])
    if (fpkt.z==0 || fpkt.net==0) help(4);
    if (topkt.z==0 || topkt.net==0) help(5);
    ftnrndinit();
-   printf("[û] Packet from %d:%d/%d.%d to %d:%d/%d.%d\n",
+   printf("[u] Packet from %d:%d/%d.%d to %d:%d/%d.%d\n",
           fpkt.z,fpkt.net,fpkt.node,fpkt.pnt,
           topkt.z,topkt.net,topkt.node,topkt.pnt);
    packmsg(fpkt,topkt,"@fidonet",msgdir,pktdir);
-   puts("[û] Done\n");
+   puts("[u] Done\n");
    ftnrnddone();
    return 0;
 }

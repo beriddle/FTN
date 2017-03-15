@@ -1,7 +1,7 @@
 /*****************************************************************************
  * R-Track - Simple Netmail tracker
  *
- * $Id: ftn.c,v 0.10 2005/04/27 00:10:00 riddle Exp $
+ * $Id: ftn.c,v 0.12 2005/04/27 00:12:00 riddle Exp $
  *
  * Mailer processor header
  *
@@ -134,7 +134,7 @@ byte inaddr(ADR adr,char *masklist)
    while (*masklist)
    {
       while (strchr(SPC,*masklist)) masklist++;
-      if (ni=(strchr(NoChr,*masklist)!=NULL)) masklist++;
+      if ((ni=(strchr(NoChr,*masklist)!=NULL))) masklist++;
       r=in_addr(adr,decodeaddr(masklist));
 //      printf("'%s' (%d) -> %d\n",masklist,ni,r);
       while (!strchr(SPC,*masklist)) masklist++;
@@ -311,9 +311,9 @@ byte postfile(ADR fpkt,ADR topkt,ADR fadr,ADR toadr,ulong msgidr,
    FILE *f,*in;
    PktHeader hdr;
    PktHdr h;
-   ulong size=part*1024L,wrs,wrps /* ,msgid */;
+   ulong size=part*1024L,wrs /* ,wrps,msgid */;
    int i=0,j,k;
-   S,s0[MAX],s1[MAX],s2[MAX],pkt[MAX],c;
+   S,s0[MAX],s1[MAX],s2[MAX],pkt[MAX];
    in=fopen(name,"rb");
    if (!in) return 2; // File not found
    makepkthdr(fpkt,topkt,&hdr);
@@ -359,7 +359,7 @@ byte postfile(ADR fpkt,ADR topkt,ADR fadr,ADR toadr,ulong msgidr,
       k=1;
       while (wrs<size && k==1)
       {
-         if (k=fgetstr(s,MAX,in))
+         if ((k=fgetstr(s,MAX,in)))
          {
             fwrite(s,strlen(s),1,f);
             fputc('\r',f);
